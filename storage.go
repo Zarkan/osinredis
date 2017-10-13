@@ -150,7 +150,9 @@ func (s *Storage) LoadAuthorize(code string) (*osin.AuthorizeData, error) {
 
 	authGob, _ := redis.Bytes(rawAuthGob, err)
 
-	var auth osin.AuthorizeData
+	auth := osin.AuthorizeData{}
+	auth.Client = &osin.DefaultClient{}
+
 	err = decode(authGob, &auth)
 	return &auth, errors.Wrap(err, "failed to decode auth")
 }

@@ -7,7 +7,7 @@ Provides Redis-based storage for [osin](https://github.com/RangelReale/osin) and
 ### Installation
 
 ```
-$ go get github.com/ShaleApps/osinredis
+$ go get github.com/Zarkan/osinredis
 ```
 
 ### Running tests
