@@ -183,8 +183,12 @@ func (s *Storage) SaveAccess(data *osin.AccessData) (err error) {
 	if err != nil {
 		return errors.Wrap(err, "failed to encode access")
 	}
-
-	accessID := uuid.NewV4().String()
+	u2, err := uuid.NewV4()
+	if err != nil {
+		fmt.Printf("Something went wrong: %s", err)
+		return
+	}
+	accessID := u2.String()
 
 	if _, err := conn.Do("SETEX", s.makeKey("access", accessID), data.ExpiresIn, string(payload)); err != nil {
 		return errors.Wrap(err, "failed to save access")
